@@ -1,0 +1,11 @@
+#!/bin/bash
+
+mkdir -p /tmp/u  # Create the /tmp/u directory if it doesn't exist
+
+for file in [A-Z]*; do
+    if [ -f "$file" ]; then
+        mv "$file" /tmp/u/
+        echo "Moved $file to /tmp/u"
+    fi
+done
+

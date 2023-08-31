@@ -1,0 +1,18 @@
+#!/bin/bash
+# This script copies HTML files from the current directory to the parent directory if they are newer or not present.
+
+for file in *.html; do
+    if [ -f "../$file" ]; then
+        current_mtime=$(stat -c %Y "$file")
+        parent_mtime=$(stat -c %Y "../$file")
+        
+        if [ $current_mtime -gt $parent_mtime ]; then
+            cp "$file" ".."
+            echo "Copied $file to parent directory"
+        fi
+    else
+        cp "$file" ".."
+        echo "Copied $file to parent directory"
+    fi
+done
+
