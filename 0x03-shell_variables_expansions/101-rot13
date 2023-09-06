@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Function to encode text using ROT13
+function rot13_encode() {
+    echo "$1" | tr 'a-zA-Z' 'n-za-mN-ZA-M'
+}
+
+# Function to decode text using ROT13
+function rot13_decode() {
+    echo "$1" | tr 'n-za-mN-ZA-M' 'a-zA-Z'
+}
+
+if [ "$1" == "encode" ]; then
+    read -p "Enter text to encode: " input_text
+    encoded_text=$(rot13_encode "$input_text")
+    echo "Encoded text: $encoded_text"
+elif [ "$1" == "decode" ]; then
+    read -p "Enter text to decode: " input_text
+    decoded_text=$(rot13_decode "$input_text")
+    echo "Decoded text: $decoded_text"
+else
+    echo "Usage: $0 [encode|decode]"
+fi

@@ -1,0 +1,3 @@
+#!/bin/bash
+formatted_num=$(printf "%.2f\n" "$NUM")
+echo "$formatted_num"

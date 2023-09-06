@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Ensure the required environment variables are set
+if [ -z "$WATER" ] || [ -z "$STIR" ]; then
+    echo "Please set both WATER and STIR environment variables."
+    exit 1
+fi
+
+# Convert the values from base water and base stir to base 10
+water_decimal=$(echo "ibase=water; $WATER" | bc)
+stir_decimal=$(echo "ibase=stir; $STIR" | bc)
+
+# Add the values in base 10
+result_decimal=$((water_decimal + stir_decimal))
+
+# Convert the result back to base bestchol
+result_bestchol=$(echo "obase=bestchol; $result_decimal" | bc)
+
+echo "$result_bestchol"
